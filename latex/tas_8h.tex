@@ -1,0 +1,109 @@
+\hypertarget{tas_8h}{}\doxysection{tas.\+h File Reference}
+\label{tas_8h}\index{tas.h@{tas.h}}
+
+
+Bibliothèque permettant de gérer une stack.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}{S\+I\+Z\+E\+\_\+\+S\+T\+A\+CK}}~128
+\begin{DoxyCompactList}\small\item\em Taille de la stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{tas_8h_a057ed6bb1bf0e328e5709cd07122454b}{tas\+\_\+malloc}} (unsigned int taille)
+\begin{DoxyCompactList}\small\item\em Aloue de la mémoire dans la stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tas_8h_afa6394875777bd4aa7ee798c08625387}{tas\+\_\+free}} (char $\ast$tas)
+\begin{DoxyCompactList}\small\item\em libère de la mémoire le buffer \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}{print\+\_\+stack}} ()
+\begin{DoxyCompactList}\small\item\em affiche la stack \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}{init\+\_\+stack}} ()
+\begin{DoxyCompactList}\small\item\em Initilialise la stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Bibliothèque permettant de gérer une stack. 
+
+\begin{DoxyAuthor}{Author}
+Sours 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/11-\/15
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}\label{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}} 
+\index{tas.h@{tas.h}!SIZE\_STACK@{SIZE\_STACK}}
+\index{SIZE\_STACK@{SIZE\_STACK}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_STACK}{SIZE\_STACK}}
+{\footnotesize\ttfamily \#define S\+I\+Z\+E\+\_\+\+S\+T\+A\+CK~128}
+
+
+
+Taille de la stack. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}\label{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}} 
+\index{tas.h@{tas.h}!init\_stack@{init\_stack}}
+\index{init\_stack@{init\_stack}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{init\_stack()}{init\_stack()}}
+{\footnotesize\ttfamily void init\+\_\+stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initilialise la stack. 
+
+\mbox{\Hypertarget{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}\label{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}} 
+\index{tas.h@{tas.h}!print\_stack@{print\_stack}}
+\index{print\_stack@{print\_stack}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{print\_stack()}{print\_stack()}}
+{\footnotesize\ttfamily void print\+\_\+stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+affiche la stack 
+
+\mbox{\Hypertarget{tas_8h_afa6394875777bd4aa7ee798c08625387}\label{tas_8h_afa6394875777bd4aa7ee798c08625387}} 
+\index{tas.h@{tas.h}!tas\_free@{tas\_free}}
+\index{tas\_free@{tas\_free}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{tas\_free()}{tas\_free()}}
+{\footnotesize\ttfamily void tas\+\_\+free (\begin{DoxyParamCaption}\item[{char $\ast$}]{tas }\end{DoxyParamCaption})}
+
+
+
+libère de la mémoire le buffer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tas} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tas_8h_a057ed6bb1bf0e328e5709cd07122454b}\label{tas_8h_a057ed6bb1bf0e328e5709cd07122454b}} 
+\index{tas.h@{tas.h}!tas\_malloc@{tas\_malloc}}
+\index{tas\_malloc@{tas\_malloc}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{tas\_malloc()}{tas\_malloc()}}
+{\footnotesize\ttfamily char$\ast$ tas\+\_\+malloc (\begin{DoxyParamCaption}\item[{unsigned int}]{taille }\end{DoxyParamCaption})}
+
+
+
+Aloue de la mémoire dans la stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em taille} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ pointeur avec la taille ou N\+U\+LL si impossible 
+\end{DoxyReturn}
