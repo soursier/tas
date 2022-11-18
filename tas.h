@@ -36,13 +36,13 @@ void tas_free(char* tas);
  * @brief affiche la stack
  * 
  */
-void print_stack();
+void print_heap();
 
 /**
  * @brief Initilialise la stack
  * 
  */
-void init_stack();
+void init_heap();
 
     #ifdef TEST
     char* get_stack();
