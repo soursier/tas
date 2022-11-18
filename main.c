@@ -5,7 +5,7 @@
 
 int main()
 {
-    init_stack();
+    init_heap();
     char *p1, *p2, *p3, *p4,*p5,*p6;
     p1 = (char *) tas_malloc(10);
     p2 = (char *) tas_malloc(20);
@@ -20,12 +20,12 @@ int main()
     strcpy( p4, "systeme" );
     strcpy( p5, "tp 5" );
     printf("p4 = %s\n",p4);
-    print_stack();
+    print_heap();
     tas_free(p4);
     tas_free(p1);
-    print_stack();
+    print_heap();
     p6 = (char *) tas_malloc(30);
     strcpy( p6, "tp 6" );
-    print_stack();
+    print_heap();
     return 0;
 }

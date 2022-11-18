@@ -6,41 +6,41 @@
 #define INIT_VAL 0
 void test_tas_malloc_example(){
 
-    init_stack();
-    char* stack = get_stack();
+    init_heap();
+    char* heap = get_heap();
     char* p1 = tas_malloc(10);
-    /*print_stack();*/
+    /*print_heap();*/
 
-    CU_ASSERT(p1-1 == stack);
+    CU_ASSERT(p1-1 == heap);
     CU_ASSERT(*(p1+1) != FREE_BLOCK);
     printf("getlibre() = %d",get_libre());
     CU_ASSERT(get_libre() == 10+1);
-    CU_ASSERT(*(stack + get_libre()) == 116);
-    CU_ASSERT(*(stack + get_libre() + 1) == FREE_BLOCK);
+    CU_ASSERT(*(heap + get_libre()) == 116);
+    CU_ASSERT(*(heap + get_libre() + 1) == FREE_BLOCK);
 
     char* p2 = tas_malloc(9);
-    /*print_stack();*/
+    /*print_heap();*/
 
-    CU_ASSERT(p2 == stack+12);
+    CU_ASSERT(p2 == heap+12);
     CU_ASSERT(*(p2-1) == 9);
     CU_ASSERT(get_libre() == 21);
 
     char* p3 = tas_malloc(5);
-    /*print_stack();*/
+    /*print_heap();*/
 
-    CU_ASSERT(p3 == stack + 22);
+    CU_ASSERT(p3 == heap + 22);
     CU_ASSERT(*(p3-1) == 5);
     CU_ASSERT(get_libre() == 27);
 
     char* p4 = tas_malloc(101);
-    /*print_stack();*/
+    /*print_heap();*/
 
     CU_ASSERT(p4 == NULL);
 }
 void test_tas_free_several(){
 
-    init_stack();
-    char* stack = get_stack();
+    init_heap();
+    char* heap = get_heap();
 
     char* p1 = tas_malloc(10);
     char* p2 = tas_malloc(10);
@@ -56,15 +56,15 @@ void test_tas_free_several(){
 
     CU_ASSERT(*(p2-1) == 10);
     CU_ASSERT(*(p2) == FREE_BLOCK);
-    CU_ASSERT(get_libre() == p2 - 1 - stack);
+    CU_ASSERT(get_libre() == p2 - 1 - heap);
 
-    print_stack_debug();
+    print_heap_debug();
     tas_free(p3); // testing merge left
-    print_stack_debug();
+    print_heap_debug();
 
     CU_ASSERT(*(p2-1) == 21);
     CU_ASSERT(*(p2) == FREE_BLOCK);
-    CU_ASSERT(get_libre() == p2 - 1 - stack);
+    CU_ASSERT(get_libre() == p2 - 1 - heap);
 
     tas_free(p1); // testing merge right
     CU_ASSERT(*(p1-1) == 32);

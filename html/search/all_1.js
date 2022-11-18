@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print_5fstack_1',['print_stack',['../tas_8h.html#a4bb1325b53dcb653e95a7935165c3b0e',1,'tas.c']]]
+  ['print_5fheap_1',['print_heap',['../tas_8h.html#afda8ef333098db87dd63843f0cd73210',1,'tas.c']]]
 ];

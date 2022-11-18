@@ -8,14 +8,14 @@
 
 #define CHUNK_LIBRE -1
 
-static char heap[SIZE_STACK];
+static char heap[SIZE_heap];
 static int libre = 0;
 void print_heap()
 {
     char* pointer = heap;
     int numero = 0;
     printf("premier octet : %d\n", heap[0]);
-    while(pointer-heap<SIZE_STACK)
+    while(pointer-heap<SIZE_heap)
     {
         numero++;
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -56,10 +56,10 @@ void print_heap_debug()
 
 void init_heap()
 {
-    heap[0] = SIZE_STACK-1;
+    heap[0] = SIZE_heap-1;
     heap[1] = CHUNK_LIBRE;
     libre = 0;
-    for(int i=2; i<SIZE_STACK;i++)
+    for(int i=2; i<SIZE_heap;i++)
     {
         heap[i]='\0';
     }
@@ -128,7 +128,7 @@ char* first_fit(int taille, char *pred)
 {
     char* pointer = &(heap[libre]);
     int numero = 0;
-    while(pointer-heap<SIZE_STACK)
+    while(pointer-heap<SIZE_heap)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -146,10 +146,10 @@ char* first_fit(int taille, char *pred)
 char* best_fit(int taille, char *pred)
 {
     char* pointer = &(heap[libre]);
-    int min_delta = SIZE_STACK+2;
+    int min_delta = SIZE_heap+2;
     int delta = 0;
     char* best = NULL;
-    while(pointer-heap<SIZE_STACK)
+    while(pointer-heap<SIZE_heap)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -177,7 +177,7 @@ char* worst_fit(int taille, char *pred)
     int max_delta = -1;
     int delta = 0;
     char* worst = NULL;
-    while(pointer-heap<SIZE_STACK)
+    while(pointer-heap<SIZE_heap)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)

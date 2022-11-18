@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_5fstack_0',['init_stack',['../tas_8h.html#a9659d9cedad2a23fdfd8ca58d6733d49',1,'tas.c']]]
+  ['init_5fheap_0',['init_heap',['../tas_8h.html#a632fb5550678e7d65db823fb1adc2dd9',1,'tas.c']]]
 ];

@@ -2,29 +2,29 @@
 \label{tas_8h}\index{tas.h@{tas.h}}
 
 
-Bibliothèque permettant de gérer une stack.  
+Bibliothèque permettant de gérer une heap.  
 
 
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}{S\+I\+Z\+E\+\_\+\+S\+T\+A\+CK}}~128
-\begin{DoxyCompactList}\small\item\em Taille de la stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{tas_8h_a19ab3f47bbe21693225ac108507631a6}{S\+I\+Z\+E\+\_\+heap}}~128
+\begin{DoxyCompactList}\small\item\em Taille de la heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 char $\ast$ \mbox{\hyperlink{tas_8h_a057ed6bb1bf0e328e5709cd07122454b}{tas\+\_\+malloc}} (unsigned int taille)
-\begin{DoxyCompactList}\small\item\em Aloue de la mémoire dans la stack. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Aloue de la mémoire dans la heap. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{tas_8h_afa6394875777bd4aa7ee798c08625387}{tas\+\_\+free}} (char $\ast$tas)
 \begin{DoxyCompactList}\small\item\em libère de la mémoire le buffer \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}{print\+\_\+stack}} ()
-\begin{DoxyCompactList}\small\item\em affiche la stack \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}{init\+\_\+stack}} ()
-\begin{DoxyCompactList}\small\item\em Initilialise la stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{tas_8h_afda8ef333098db87dd63843f0cd73210}{print\+\_\+heap}} ()
+\begin{DoxyCompactList}\small\item\em affiche la heap \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tas_8h_a632fb5550678e7d65db823fb1adc2dd9}{init\+\_\+heap}} ()
+\begin{DoxyCompactList}\small\item\em Initilialise la heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Bibliothèque permettant de gérer une stack. 
+Bibliothèque permettant de gérer une heap. 
 
 \begin{DoxyAuthor}{Author}
 Sours 
@@ -41,38 +41,38 @@ Copyright (c) 2022
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}\label{tas_8h_aeb86ada78a90a38f3ff6c6ebc199d89e}} 
-\index{tas.h@{tas.h}!SIZE\_STACK@{SIZE\_STACK}}
-\index{SIZE\_STACK@{SIZE\_STACK}!tas.h@{tas.h}}
-\doxysubsubsection{\texorpdfstring{SIZE\_STACK}{SIZE\_STACK}}
-{\footnotesize\ttfamily \#define S\+I\+Z\+E\+\_\+\+S\+T\+A\+CK~128}
+\mbox{\Hypertarget{tas_8h_a19ab3f47bbe21693225ac108507631a6}\label{tas_8h_a19ab3f47bbe21693225ac108507631a6}} 
+\index{tas.h@{tas.h}!SIZE\_heap@{SIZE\_heap}}
+\index{SIZE\_heap@{SIZE\_heap}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_heap}{SIZE\_heap}}
+{\footnotesize\ttfamily \#define S\+I\+Z\+E\+\_\+heap~128}
 
 
 
-Taille de la stack. 
+Taille de la heap. 
 
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}\label{tas_8h_a9659d9cedad2a23fdfd8ca58d6733d49}} 
-\index{tas.h@{tas.h}!init\_stack@{init\_stack}}
-\index{init\_stack@{init\_stack}!tas.h@{tas.h}}
-\doxysubsubsection{\texorpdfstring{init\_stack()}{init\_stack()}}
-{\footnotesize\ttfamily void init\+\_\+stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{tas_8h_a632fb5550678e7d65db823fb1adc2dd9}\label{tas_8h_a632fb5550678e7d65db823fb1adc2dd9}} 
+\index{tas.h@{tas.h}!init\_heap@{init\_heap}}
+\index{init\_heap@{init\_heap}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{init\_heap()}{init\_heap()}}
+{\footnotesize\ttfamily void init\+\_\+heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Initilialise la stack. 
+Initilialise la heap. 
 
-\mbox{\Hypertarget{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}\label{tas_8h_a4bb1325b53dcb653e95a7935165c3b0e}} 
-\index{tas.h@{tas.h}!print\_stack@{print\_stack}}
-\index{print\_stack@{print\_stack}!tas.h@{tas.h}}
-\doxysubsubsection{\texorpdfstring{print\_stack()}{print\_stack()}}
-{\footnotesize\ttfamily void print\+\_\+stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{tas_8h_afda8ef333098db87dd63843f0cd73210}\label{tas_8h_afda8ef333098db87dd63843f0cd73210}} 
+\index{tas.h@{tas.h}!print\_heap@{print\_heap}}
+\index{print\_heap@{print\_heap}!tas.h@{tas.h}}
+\doxysubsubsection{\texorpdfstring{print\_heap()}{print\_heap()}}
+{\footnotesize\ttfamily void print\+\_\+heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-affiche la stack 
+affiche la heap 
 
 \mbox{\Hypertarget{tas_8h_afa6394875777bd4aa7ee798c08625387}\label{tas_8h_afa6394875777bd4aa7ee798c08625387}} 
 \index{tas.h@{tas.h}!tas\_free@{tas\_free}}
@@ -97,7 +97,7 @@ libère de la mémoire le buffer
 
 
 
-Aloue de la mémoire dans la stack. 
+Aloue de la mémoire dans la heap. 
 
 
 \begin{DoxyParams}{Parameters}
