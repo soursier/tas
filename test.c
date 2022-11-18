@@ -62,9 +62,6 @@ void test_tas_free_several(){
     tas_free(p3); // testing merge left
     print_stack_debug();
 
-    CU_ASSERT(*(p3) == INIT_VAL);
-    CU_ASSERT(*(p3-1) == INIT_VAL);
-
     CU_ASSERT(*(p2-1) == 21);
     CU_ASSERT(*(p2) == FREE_BLOCK);
     CU_ASSERT(get_libre() == p2 - 1 - stack);
