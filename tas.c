@@ -8,14 +8,14 @@
 
 #define CHUNK_LIBRE -1
 
-static char stack[SIZE_STACK];
+static char heap[SIZE_STACK];
 static int libre = 0;
-void print_stack()
+void print_heap()
 {
-    char* pointer = stack;
+    char* pointer = heap;
     int numero = 0;
-    printf("premier octet : %d\n", stack[0]);
-    while(pointer-stack<SIZE_STACK)
+    printf("premier octet : %d\n", heap[0]);
+    while(pointer-heap<SIZE_STACK)
     {
         numero++;
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -29,7 +29,7 @@ void print_stack()
     }
 }
 
-void print_stack_debug()
+void print_heap_debug()
 {
     printf ("libre = %d\n", libre);
     int i, j;
@@ -39,12 +39,12 @@ void print_stack_debug()
         }
         printf("\n");
         for (j = 0; j < 16; j++) { 
-            printf("%4d", stack[j + 16*i]);
+            printf("%4d", heap[j + 16*i]);
         }
         printf("\n");
         for (j = 0; j < 16; j++) { 
-            if (isprint(stack[j + 16*i])) {
-                printf("%4c", stack[j + 16*i]);
+            if (isprint(heap[j + 16*i])) {
+                printf("%4c", heap[j + 16*i]);
             } else {
                 printf("    ");
             }
@@ -54,20 +54,20 @@ void print_stack_debug()
     printf("---------------------------------------------------------------\n\n");
 }
 
-void init_stack()
+void init_heap()
 {
-    stack[0] = SIZE_STACK-1;
-    stack[1] = CHUNK_LIBRE;
+    heap[0] = SIZE_STACK-1;
+    heap[1] = CHUNK_LIBRE;
     libre = 0;
     for(int i=2; i<SIZE_STACK;i++)
     {
-        stack[i]='\0';
+        heap[i]='\0';
     }
 }
 
 char* get_previous_block(char* courant)
 {
-    char* pointer = &stack[libre];
+    char* pointer = &heap[libre];
     int numero = 0;
     char* prec_pointer = pointer;
     do
@@ -100,7 +100,7 @@ void merge_free(char* current_block)
     {
         merge_blocks(current_block,next_block);
     }
-    if(libre < current_block-stack)
+    if(libre < current_block-heap)
     {
         char* prec_block = get_previous_block(current_block);
         if(*(prec_block+1)==-1)
@@ -115,9 +115,9 @@ void merge_free(char* current_block)
 void tas_free(char* tas)
 {
     tas[0] = CHUNK_LIBRE;
-    if(libre > tas-stack )
+    if(libre > tas-heap )
     {
-        libre = tas-stack-1;
+        libre = tas-heap-1;
     }
     char * pointer = tas-1;
 
@@ -126,9 +126,9 @@ void tas_free(char* tas)
 
 char* first_fit(int taille, char *pred)
 {
-    char* pointer = &(stack[libre]);
+    char* pointer = &(heap[libre]);
     int numero = 0;
-    while(pointer-stack<SIZE_STACK)
+    while(pointer-heap<SIZE_STACK)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -145,11 +145,11 @@ char* first_fit(int taille, char *pred)
 
 char* best_fit(int taille, char *pred)
 {
-    char* pointer = &(stack[libre]);
+    char* pointer = &(heap[libre]);
     int min_delta = SIZE_STACK+2;
     int delta = 0;
     char* best = NULL;
-    while(pointer-stack<SIZE_STACK)
+    while(pointer-heap<SIZE_STACK)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -173,11 +173,11 @@ char* best_fit(int taille, char *pred)
 
 char* worst_fit(int taille, char *pred)
 {
-    char* pointer = &(stack[libre]);
+    char* pointer = &(heap[libre]);
     int max_delta = -1;
     int delta = 0;
     char* worst = NULL;
-    while(pointer-stack<SIZE_STACK)
+    while(pointer-heap<SIZE_STACK)
     {
 
         if(*(pointer+1)==CHUNK_LIBRE)
@@ -220,9 +220,9 @@ char *tas_malloc(unsigned int taille)
         return NULL;
     }
     *emplacement = taille;
-    if(libre==(emplacement-stack))
+    if(libre==(emplacement-heap))
     {
-        libre =(emplacement-stack)+taille+1;
+        libre =(emplacement-heap)+taille+1;
     }
     printf("taille = %d\n",taille);
     printf("libre = %d\n",libre);
@@ -231,9 +231,9 @@ char *tas_malloc(unsigned int taille)
 }
 
 #ifdef TEST
-char* get_stack()
+char* get_heap()
 {
-    return stack;
+    return heap;
 }
 int get_libre()
 {
