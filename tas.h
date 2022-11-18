@@ -45,7 +45,7 @@ void print_heap();
 void init_heap();
 
     #ifdef TEST
-    char* get_stack();
+    char* get_heap();
     int get_libre();
     void print_stack_debug();
     #endif
