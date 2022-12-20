@@ -8,10 +8,16 @@ int main()
     init_heap();
     char *p1, *p2, *p3, *p4,*p5,*p6;
     p1 = (char *) tas_malloc(10);
+    printf("test \n");
     p2 = (char *) tas_malloc(20);
+    printf("test \n");
     p3 = (char *) tas_malloc(20);
+    printf("test \n");
     p5 = (char *) tas_malloc(50);
+    printf("test \n");
     strcpy( p1, "tp 1" );
+    printf("test \n");
+    printf("p1 = %s\n",p1);
     strcpy( p2, "tp 2" );
     strcpy( p3, "tp 3" );
     printf("p1 = %s p2 = %s p3 = %s \n",p1,p2,p3);

@@ -9,6 +9,8 @@ void test_tas_malloc_example(){
     init_heap();
     char* heap = get_heap();
     char* p1 = tas_malloc(10);
+    strcpy(p1,"tp1");
+    print_heap_debug();
     /*print_heap();*/
 
     CU_ASSERT(p1-1 == heap);
@@ -19,6 +21,8 @@ void test_tas_malloc_example(){
     CU_ASSERT(*(heap + get_libre() + 1) == FREE_BLOCK);
 
     char* p2 = tas_malloc(9);
+    strcpy(p2,"tp2");
+    print_heap_debug();
     /*print_heap();*/
 
     CU_ASSERT(p2 == heap+12);
@@ -38,16 +42,20 @@ void test_tas_malloc_example(){
     CU_ASSERT(p4 == NULL);
 }
 void test_tas_free_several(){
+    printf("HEY JE SUIS LA\n");
 
     init_heap();
     char* heap = get_heap();
 
     char* p1 = tas_malloc(10);
+    strcpy(p1,"tp1");
+    print_heap_debug();
+    printf("HEY JE SUIS LA\n");
+    
     char* p2 = tas_malloc(10);
     char* p3 = tas_malloc(10);
     char* p4 = tas_malloc(10);
 
-    strcpy(p1,"tp1");
     strcpy(p2,"tp2");
     strcpy(p3,"tp3");
     strcpy(p4,"tp4");
@@ -79,7 +87,6 @@ void test_tas_free_several(){
 
 int main()
 {
-
   CU_pSuite pSuite = NULL;
 
   /* initialize the CUnit test registry */

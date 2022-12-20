@@ -1,4 +1,3 @@
-
 #include "tas.h"
 
 #include <stdio.h>
@@ -6,10 +5,15 @@
 #include <stdlib.h> 
 #include <ctype.h>
 
+#include "./linked_list/linked_list.h"
+#include "logger.h"
+
 #define CHUNK_LIBRE -1
 
 static char heap[SIZE_heap];
 static int libre = 0;
+static linked_list head_libre = NULL;
+
 void print_heap()
 {
     char* pointer = heap;
@@ -63,6 +67,7 @@ void init_heap()
     {
         heap[i]='\0';
     }
+    head_libre = linked_list_push(NULL, 0);    
 }
 
 char* get_previous_block(char* courant)
@@ -85,6 +90,7 @@ char* get_previous_block(char* courant)
 
     return prec_pointer;
 }
+
 char* get_next_block(char* courant)
 {
     return courant+*courant+1;
@@ -108,105 +114,64 @@ void merge_free(char* current_block)
             merge_blocks(prec_block,current_block);
         }
     }
-    
-
 }
 
 void tas_free(char* tas)
 {
     tas[0] = CHUNK_LIBRE;
+
+    int index_libre = linked_list_first_greater_or_equal(head_libre,tas-heap-1);
+    if(index_libre==-1)
+    {
+        linked_list_push(head_libre,tas-heap-1);
+        printf("valeur pushée  = %ld\n",tas-heap-1);
+    }
+
+    linked_list temp = linked_list_add(head_libre, tas-heap-1, index_libre);
+    
+    if(index_libre == 0)
+    {
+        head_libre = temp;
+    }
+
     if(libre > tas-heap )
     {
         libre = tas-heap-1;
     }
+    logger_log("FREE", *tas, tas-1);
     char * pointer = tas-1;
 
     merge_free(pointer);
+    linked_list_clean(head_libre);
 }
 
 char* first_fit(int taille, char *pred)
 {
-    char* pointer = &(heap[libre]);
-    int numero = 0;
-    while(pointer-heap<SIZE_heap)
+    linked_list current = head_libre;
+    while(current != NULL)
     {
-
-        if(*(pointer+1)==CHUNK_LIBRE)
-        {
-            if(*pointer > taille) return pointer;
-            pointer += *pointer+1;
-            continue;
-        }
-        pointer += *pointer+1;
-        numero++;
+        printf("emplacement = %d valeur de la heap = %d",current->value,heap[current->value]);
+        if(heap[current->value] > taille) return &heap[current->value];
+        current = current->next;
     }
     return NULL;
 }
 
-char* best_fit(int taille, char *pred)
-{
-    char* pointer = &(heap[libre]);
-    int min_delta = SIZE_heap+2;
-    int delta = 0;
-    char* best = NULL;
-    while(pointer-heap<SIZE_heap)
-    {
-
-        if(*(pointer+1)==CHUNK_LIBRE)
-        {
-            if(*pointer > taille)
-            {
-                delta = *pointer - taille;
-                if(delta < min_delta)
-                {
-                    best = pointer;
-                    min_delta = delta;
-                }
-            } 
-            pointer += *pointer+1;
-            continue;
-        }
-        pointer += *pointer+1;
-    }
-    return best;
-}
-
-char* worst_fit(int taille, char *pred)
-{
-    char* pointer = &(heap[libre]);
-    int max_delta = -1;
-    int delta = 0;
-    char* worst = NULL;
-    while(pointer-heap<SIZE_heap)
-    {
-
-        if(*(pointer+1)==CHUNK_LIBRE)
-        {
-            if(*pointer > taille)
-            {
-                delta = *pointer - taille;
-                if(delta > max_delta)
-                {
-                    worst = pointer;
-                    max_delta = delta;
-                }
-            } 
-            pointer += *pointer+1;
-            continue;
-        }
-        pointer += *pointer+1;
-    }
-    return worst;
-}
-
 char *tas_malloc(unsigned int taille)
 {
-    char* emplacement = best_fit(taille,NULL);
+    char* emplacement = first_fit(taille,NULL);
     if(emplacement==NULL) return NULL;
     if(taille<*emplacement)
     {
         if(*emplacement-taille>2)
         {
+            int index_libre = linked_list_first_greater_or_equal(head_libre,emplacement-heap+taille);
+            if(index_libre==-1)
+            {
+                linked_list_push(head_libre,emplacement-heap+taille);
+                printf("valeur pushée  = %ld\n",emplacement-heap+taille);
+            }
+            linked_list_add(head_libre, emplacement-heap+taille+1, index_libre);
             *(emplacement+taille+1) = *emplacement-taille-1;
             *(emplacement+taille+2) = CHUNK_LIBRE;
         }else
@@ -219,15 +184,26 @@ char *tas_malloc(unsigned int taille)
         printf("taille presente = %d taille demandee = %d",*emplacement,taille);
         return NULL;
     }
+
+    int index_not_libre_anymore = linked_list_first_greater_or_equal(head_libre,emplacement-heap);
+    printf("index not libre %d\n",index_not_libre_anymore);
+    linked_list temp =  remove_at_index(head_libre,index_not_libre_anymore);
+    if((temp!=NULL)&&(temp->before == NULL))
+    {
+        printf("tempvalue = %d \n",temp->value);
+        head_libre = temp;
+    }
     *emplacement = taille;
     if(libre==(emplacement-heap))
     {
         libre =(emplacement-heap)+taille+1;
     }
+    logger_init_log(LOGGING);
+    logger_log("MALLOC", taille, emplacement);
+    logger_free();
     printf("taille = %d\n",taille);
     printf("libre = %d\n",libre);
     return emplacement+1;
-
 }
 
 #ifdef TEST
